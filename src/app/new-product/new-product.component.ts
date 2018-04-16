@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Products } from '../products.service';
 import { Product } from '../products';
-import { uid } from 'angular-uid';
 import { ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -20,13 +19,13 @@ public eid : number = 1;
       .subscribe(params => {
         // Defaults to 0 if no query param provided.
         this.eid = params['page'] || 0;      	
- 
+ 		this.product = new Product(0,"","");
    		this.products.getProduct().forEach(pro=> {
             if(this.eid==pro.id){
     		this.product = pro;
    		}
          }) 
-});
+     });
   }
   saveProduct(product: Product) {
 	   if (product.id == 0 ) {
