@@ -1,0 +1,40 @@
+<h3 style="text-align:center;">
+  Products
+</h3>
+<nav style="text-align:center;">
+	<a [routerLink]="['/']">
+    Home
+  </a>
+   | 
+	<a [routerLink]="['/newProduct']">
+    New
+  </a>
+</nav>
+
+<main>
+	<router-outlet></router-outlet>
+</main>
+
+<div class="container">
+  <h1>Product List</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{ p.name }}</td>
+        <td>{{ p.description }}</td>
+	   <td  [routerLink]="['newProduct']" [queryParams]="{ page: p.id }"><a>Edit Product</a></td>
+	   <td ><a (click)="removeProduct(p)" >Delete</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
